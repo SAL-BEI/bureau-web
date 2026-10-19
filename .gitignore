@@ -1,8 +1,18 @@
-node_modules
-dist
-.DS_Store
-*.local
-*.log
-.env
-.env.*
+# dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# legacy/build output
+dist/
+
+# local environment files
+.env*
 !.env.example
+
+# logs and operating system files
+*.log
+.DS_Store
+Thumbs.db
