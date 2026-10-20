@@ -3,15 +3,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { ArrowUpRight, ChevronDown, Mail, MapPin, Menu, Phone, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ChevronDown, Mail, MapPin, Menu, Phone, X } from "lucide-react";
 import { services } from "@/data/site";
-import { EMAIL, mapsDirectionsUrl, PHONE_DISPLAY, PHONE_E164 } from "@/lib/contact";
+import { mapsDirectionsUrl, siteFacts } from "@/lib/site-facts";
+import { ButtonLink } from "@/components/ui/Button";
 
 const navigation = [
   ["Home", "/"],
   ["Aviation", "/aviation-printing"],
-  ["Our work", "/work"],
+  ["Work", "/work"],
   ["About", "/about"],
   ["Contact", "/contact"],
 ] as const;
@@ -20,6 +21,25 @@ export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [compact, setCompact] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setCompact(window.scrollY > 70);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        setServicesOpen(false);
+      }
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, []);
 
   const closeMenus = () => {
     setMenuOpen(false);
@@ -27,21 +47,21 @@ export default function Header() {
   };
 
   return (
-    <>
+    <header className={`site-header ${compact ? "is-compact" : ""}`}>
       <div className="utility-bar">
         <div className="site-shell utility-inner">
-          <a href={`tel:${PHONE_E164}`}><Phone size={13} /> {PHONE_DISPLAY}</a>
-          <a href={mapsDirectionsUrl} target="_blank" rel="noreferrer" className="utility-location">
-            <MapPin size={13} /> Wilson Airport, Exit Lane, KAA Building No. 49
+          <a href={`tel:${siteFacts.phoneE164}`}><Phone size={13} /> {siteFacts.phoneDisplay}</a>
+          <a href={mapsDirectionsUrl} target="_blank" rel="noreferrer">
+            <MapPin size={13} /> Wilson Airport, KAA Building No. 49
           </a>
-          <a href={`mailto:${EMAIL}`} className="utility-email"><Mail size={13} /> {EMAIL}</a>
+          <a href={`mailto:${siteFacts.email}`} className="utility-email"><Mail size={13} /> {siteFacts.email}</a>
         </div>
       </div>
 
-      <header className="site-header">
+      <div className="nav-bar">
         <div className="site-shell nav-shell">
           <Link href="/" className="site-logo" aria-label="Bureau Graphics home" onClick={closeMenus}>
-            <Image src="/bureau-graphics-logo.png" width={3287} height={1483} priority alt="Bureau Graphics" />
+            <Image src="/bureau-graphics-logo-transparent.png" width={900} height={405} priority alt="Bureau Graphics" />
           </Link>
 
           <button
@@ -49,12 +69,13 @@ export default function Header() {
             className="mobile-menu-button"
             aria-label={menuOpen ? "Close navigation" : "Open navigation"}
             aria-expanded={menuOpen}
+            aria-controls="main-navigation"
             onClick={() => setMenuOpen((current) => !current)}
           >
             {menuOpen ? <X /> : <Menu />}
           </button>
 
-          <nav className={`main-nav ${menuOpen ? "is-open" : ""}`} aria-label="Main navigation">
+          <nav id="main-navigation" className={`main-nav ${menuOpen ? "is-open" : ""}`} aria-label="Main navigation">
             <Link href="/" className={pathname === "/" ? "is-active" : ""} onClick={closeMenus}>Home</Link>
 
             <div className="nav-services">
@@ -68,12 +89,12 @@ export default function Header() {
               </button>
               <div className={`services-menu ${servicesOpen ? "is-open" : ""}`}>
                 <Link href="/services" className="services-menu-all" onClick={closeMenus}>
-                  <span>All services</span><ArrowUpRight size={17} />
+                  <strong>All services</strong><span>Choose by what you need to make</span>
                 </Link>
                 {services.map((service) => (
                   <Link href={`/services/${service.slug}`} key={service.slug} onClick={closeMenus}>
-                    <span>{service.number}</span>
-                    <strong>{service.title}</strong>
+                    <i className={`service-dot accent-${service.accent}`} aria-hidden="true" />
+                    <span><strong>{service.title}</strong><small>{service.shortTitle}</small></span>
                   </Link>
                 ))}
               </div>
@@ -83,10 +104,12 @@ export default function Header() {
               <Link key={href} href={href} className={pathname === href ? "is-active" : ""} onClick={closeMenus}>{label}</Link>
             ))}
 
-            <Link href="/contact#quote" className="nav-cta" onClick={closeMenus}>Request a quote <ArrowUpRight size={17} /></Link>
+            <ButtonLink href="/contact#quote" variant={compact ? "primary" : "secondary"} className="nav-quote" eventName="header_quote">
+              Get a quote
+            </ButtonLink>
           </nav>
         </div>
-      </header>
-    </>
+      </div>
+    </header>
   );
 }

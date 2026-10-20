@@ -1,20 +1,21 @@
-import Link from "next/link";
-import { ArrowRight, MessageCircle } from "lucide-react";
-import { whatsappUrl } from "@/lib/contact";
+import { MessageCircle } from "lucide-react";
+import { buildWhatsAppUrl } from "@/lib/site-facts";
+import { ButtonLink } from "@/components/ui/Button";
 
-export default function QuoteBand({ title = "Have something to print? Let’s make it real." }: { title?: string }) {
+export default function QuoteBand({ title = "Ready to put your brand into the world?", context }: { title?: string; context?: string }) {
   return (
-    <section className="quote-band">
+    <section className="quote-band" data-final-cta>
       <div className="site-shell quote-band-inner">
         <div>
-          <p className="section-label light">Start a project</p>
+          <p className="context-label on-dark">Start a project</p>
           <h2>{title}</h2>
+          <p>Send the product, quantity, size and required date. We will help with the rest.</p>
         </div>
         <div className="quote-band-actions">
-          <a href={whatsappUrl()} target="_blank" rel="noreferrer" className="button button-white">
-            <MessageCircle size={18} /> WhatsApp us
-          </a>
-          <Link href="/contact#quote" className="button button-ghost-light">Contact options <ArrowRight size={18} /></Link>
+          <ButtonLink href="/contact#quote" variant="on-dark" size="lg" eventName="quote_band_form">Build your quote</ButtonLink>
+          <ButtonLink href={buildWhatsAppUrl({ topic: context })} variant="on-dark-outline" size="lg" target="_blank" rel="noreferrer" eventName="quote_band_whatsapp">
+            <MessageCircle size={18} /> WhatsApp
+          </ButtonLink>
         </div>
       </div>
     </section>

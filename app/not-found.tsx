@@ -6,8 +6,8 @@ export default function NotFound() {
     <main id="main-content" className="not-found">
       <span>404</span>
       <h1>This page missed the print run.</h1>
-      <p>The link may have changed or the page does not exist.</p>
-      <Link href="/" className="button button-red"><ArrowLeft size={18} /> Back home</Link>
+      <p>The link may have changed, but the rest of the studio is still here.</p>
+      <Link href="/" className="button button-primary button-lg"><ArrowLeft size={18} /> Back home</Link>
     </main>
   );
 }

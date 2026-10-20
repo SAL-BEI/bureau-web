@@ -1,16 +1,13 @@
-import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
-import { EMAIL, emailUrl, mapsDirectionsUrl, PHONE_DISPLAY, PHONE_E164, whatsappUrl } from "@/lib/contact";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { buildEmailUrl, buildWhatsAppUrl, mapsDirectionsUrl, siteFacts } from "@/lib/site-facts";
 
 export default function ContactActions({ context }: { context?: string }) {
-  const message = context
-    ? `Hello Bureau Graphics, I would like a quotation for ${context}. My quantity and specifications are:`
-    : "Hello Bureau Graphics, I would like a quotation. My product, quantity and specifications are:";
-
+  const details = context ? { topic: context } : {};
   const actions = [
-    { label: "WhatsApp", detail: "Fastest for quotations", href: whatsappUrl(message), icon: MessageCircle, external: true, className: "whatsapp" },
-    { label: "Call us", detail: PHONE_DISPLAY, href: `tel:${PHONE_E164}`, icon: Phone, className: "call" },
-    { label: "Email", detail: EMAIL, href: emailUrl(context ? `${context} quotation` : "Quotation request"), icon: Mail, className: "email" },
-    { label: "Visit", detail: "Open directions", href: mapsDirectionsUrl, icon: MapPin, external: true, className: "visit" },
+    { label: "WhatsApp", detail: "Start a quotation", href: buildWhatsAppUrl(details), icon: MessageCircle, external: true, className: "whatsapp" },
+    { label: "Call", detail: siteFacts.phoneDisplay, href: `tel:${siteFacts.phoneE164}`, icon: Phone, className: "call" },
+    { label: "Email", detail: siteFacts.email, href: buildEmailUrl(details), icon: Mail, className: "email" },
+    { label: "Directions", detail: "Wilson Airport", href: mapsDirectionsUrl, icon: MapPin, external: true, className: "visit" },
   ];
 
   return (
@@ -25,9 +22,8 @@ export default function ContactActions({ context }: { context?: string }) {
             rel={action.external ? "noreferrer" : undefined}
             key={action.label}
           >
-            <span className="contact-action-icon"><Icon size={21} /></span>
+            <Icon size={20} />
             <span><strong>{action.label}</strong><small>{action.detail}</small></span>
-            <ArrowUpRight size={18} className="contact-action-arrow" />
           </a>
         );
       })}

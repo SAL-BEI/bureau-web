@@ -1,70 +1,52 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, ArrowUpRight, Check, MoveRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
+import AviationShowcase from "@/components/AviationShowcase";
 import ClientLogoRail from "@/components/ClientLogoRail";
+import FaqList from "@/components/FaqList";
+import HeroProofSheet from "@/components/HeroProofSheet";
 import LocationCard from "@/components/LocationCard";
+import PrePrintChecklist from "@/components/PrePrintChecklist";
+import ProductIntent from "@/components/ProductIntent";
 import QuoteBand from "@/components/QuoteBand";
 import ServiceCard from "@/components/ServiceCard";
-import { aviationItems, processSteps, services } from "@/data/site";
+import { processSteps, services } from "@/data/site";
+import { buildWhatsAppUrl } from "@/lib/site-facts";
+import { ButtonLink } from "@/components/ui/Button";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default function HomePage() {
   return (
     <main id="main-content">
       <section className="home-hero">
-        <div className="hero-orbit orbit-one" aria-hidden="true" />
-        <div className="hero-orbit orbit-two" aria-hidden="true" />
         <div className="site-shell home-hero-grid">
           <div className="hero-copy">
-            <p className="hero-kicker"><span /> Nairobi · Wilson Airport · Since 1997</p>
-            <h1>We make brands <em>look ready</em> for takeoff.</h1>
-            <p className="hero-intro">
-              Design, print and branding under one roof, from one urgent business card to specialised aviation manuals and full corporate production.
-            </p>
+            <p className="context-label">Nairobi · Wilson Airport · Since 1997</p>
+            <h1>Branding and print, done properly since 1997.</h1>
+            <p className="hero-intro">From branded merchandise and signs to digital print and aviation publications, one team handles your job from artwork to finishing at Wilson Airport, Nairobi.</p>
             <div className="hero-actions">
-              <Link href="/contact#quote" className="button button-red">Request a quote <ArrowUpRight size={18} /></Link>
-              <Link href="/services" className="text-button">Explore services <ArrowDown size={17} /></Link>
+              <ButtonLink href="/contact#quote" size="lg" eventName="hero_quote">Get a quote</ButtonLink>
+              <ButtonLink href={buildWhatsAppUrl()} variant="text" size="lg" target="_blank" rel="noreferrer" eventName="hero_whatsapp">Chat on WhatsApp</ButtonLink>
             </div>
-            <div className="hero-proof" aria-label="Bureau Graphics highlights">
-              <div><strong>1997</strong><span>Established</span></div>
-              <div><strong>Wilson</strong><span>Airport based</span></div>
-              <div><strong>One team</strong><span>Design to finishing</span></div>
-            </div>
+            <ul className="hero-proof" aria-label="Why work with Bureau Graphics">
+              <li><Check size={15} /> Design to finishing</li>
+              <li><Check size={15} /> Established 1997</li>
+              <li><Check size={15} /> Wilson Airport based</li>
+            </ul>
           </div>
-
-          <div className="hero-stage">
-            <div className="hero-image-wrap">
-              <Image
-                src="/aviation-hero.png"
-                fill
-                priority
-                sizes="(max-width: 900px) 100vw, 52vw"
-                alt="Aircraft manuals, cockpit cards and branded aviation products produced by Bureau Graphics"
-              />
-            </div>
-            <div className="hero-note hero-note-top"><span>Precision print</span><strong>For air &amp; ground</strong></div>
-            <div className="hero-note hero-note-bottom"><strong>Design</strong><span>Print</span><span>Brand</span></div>
-          </div>
-        </div>
-        <div className="service-ticker" aria-label="Core services">
-          <div className="ticker-track">
-            {[...services, ...services].map((service, index) => (
-              <span key={`${service.slug}-${index}`}>{service.title}<i>✦</i></span>
-            ))}
-          </div>
+          <HeroProofSheet />
         </div>
       </section>
+
+      <div className="site-shell product-intent-wrap"><ProductIntent /></div>
 
       <section className="section services-preview">
         <div className="site-shell">
           <div className="section-heading heading-split">
-            <div>
-              <p className="section-label">What we make</p>
-              <h2>Serious production.<br /><em>Zero ordinary.</em></h2>
-            </div>
-            <div>
-              <p>Clear advice, the right print process and careful finishing. Pick a service to see what we can produce for you.</p>
-              <Link href="/services" className="inline-link">See every service <ArrowRight size={17} /></Link>
-            </div>
+            <div><p className="context-label">Capabilities</p><h2>A brand partner with production under one roof.</h2></div>
+            <div><p>Start with the result you need. We will guide the artwork, material, print method and finishing.</p><Link href="/services" className="inline-link">See all services <ArrowRight size={16} /></Link></div>
           </div>
           <div className="services-grid">
             {services.map((service) => <ServiceCard service={service} key={service.slug} />)}
@@ -72,60 +54,48 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="aviation-feature">
-        <div className="site-shell aviation-feature-grid">
-          <div className="aviation-copy">
-            <p className="section-label light">Specialised aviation printing</p>
-            <h2>Built around cockpit clarity.</h2>
-            <p>
-              From QRHs and technical logbooks to crew cards, LOPA books and aircraft placards, we support aviation teams with carefully prepared production.
-            </p>
-            <Link href="/aviation-printing" className="button button-white">Explore aviation printing <ArrowRight size={18} /></Link>
-          </div>
-          <div className="aviation-sample">
-            <span className="sample-index">BG / AIR / 01</span>
-            <div className="sample-window">
-              <Image src="/aviation-hero.png" fill sizes="(max-width: 900px) 100vw, 50vw" alt="Aviation printing samples" />
-            </div>
-            <div className="sample-list">
-              {aviationItems.slice(0, 4).map((item) => <span key={item}><Check size={15} /> {item}</span>)}
-            </div>
+      <section className="section aviation-feature">
+        <div className="site-shell"><AviationShowcase /></div>
+      </section>
+
+      <section className="section production-section">
+        <div className="site-shell production-grid">
+          <figure className="production-image">
+            <Image src="/visuals/print-production.webp" fill sizes="(max-width: 900px) 100vw, 50vw" alt="Illustrative close-up of a commercial print production line" />
+            <figcaption>Illustrative production visual</figcaption>
+          </figure>
+          <div className="production-copy">
+            <p className="context-label">One practical workflow</p>
+            <h2>Clear before the machine runs.</h2>
+            <p>The most useful print decisions happen before production: what the item must do, how it will be handled, and what needs approval.</p>
+            <ol className="process-list">
+              {processSteps.map(([number, title, text, status]) => (
+                <li key={number}><span>{number}</span><div><h3>{title}</h3><p>{text}</p></div><small>{status}</small></li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
 
-      <section className="section process-section">
-        <div className="site-shell">
-          <div className="section-heading heading-split process-heading">
-            <div>
-              <p className="section-label">How it works</p>
-              <h2>From brief to finished.</h2>
-            </div>
-            <p>A practical process that keeps the job clear before anything goes into production.</p>
-          </div>
-          <div className="process-grid">
-            {processSteps.map(([number, title, text]) => (
-              <article key={number}>
-                <div className="process-top"><span>{number}</span><MoveRight size={23} /></div>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
+      <section className="section checklist-section">
+        <div className="site-shell"><PrePrintChecklist /></div>
       </section>
 
       <section className="section client-section">
-        <div className="site-shell section-heading client-heading">
-          <p className="section-label">Companies we support</p>
-          <h2>Trusted across aviation, education and business.</h2>
+        <div className="site-shell">
+          <div className="section-heading compact-heading"><p className="context-label">Selected clients</p><h2>Supporting organisations across aviation, education and business.</h2></div>
+          <ClientLogoRail />
         </div>
-        <ClientLogoRail />
       </section>
 
       <section className="section home-location">
-        <div className="site-shell">
-          <LocationCard />
+        <div className="site-shell"><LocationCard /></div>
+      </section>
+
+      <section className="section faq-section">
+        <div className="site-shell faq-grid">
+          <div><p className="context-label">Before you ask</p><h2>Useful answers for a smoother first quote.</h2></div>
+          <FaqList />
         </div>
       </section>
 

@@ -31,16 +31,17 @@ app/
   aviation-printing/page.tsx  Aviation printing
   work/page.tsx               Work categories
   about/page.tsx              About
-  contact/page.tsx            Contact and quotations
+  contact/page.tsx            Contact and interactive quote builder
+  privacy/page.tsx            Privacy information
 components/                   Shared layout and UI components
 data/site.ts                  Services, aviation items and client data
-lib/contact.ts                Phone, email, WhatsApp and Maps links
-public/                       Logo, hero image and client logos
+lib/site-facts.ts             Confirmed business facts and contact-link builders
+public/                       Logos, temporary visuals and client logos
 ```
 
 ## Updating contact links
 
-Edit `lib/contact.ts`. WhatsApp messages are generated automatically and individual service pages include the service name in their quotation message.
+Edit `lib/site-facts.ts`. WhatsApp and email messages are generated automatically, and individual service pages include the service name in their quotation message.
 
 ## Adding photos
 
@@ -53,6 +54,8 @@ import Image from "next/image";
 ```
 
 Normal website photos are deployed with the code and do not require a database. A future customer file-upload form would require separate storage.
+
+The current illustrative visuals are documented in `public/visuals/README.md`. Follow `CONTENT_REPLACEMENT_CHECKLIST.md` when real photography, verified business facts and approved testimonials are ready.
 
 ## Deploying on Vercel
 

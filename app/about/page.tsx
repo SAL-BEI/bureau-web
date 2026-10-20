@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, Crosshair, Eye, Handshake, Lightbulb } from "lucide-react";
+import { Eye, Handshake, Lightbulb, ScanLine } from "lucide-react";
 import LocationCard from "@/components/LocationCard";
 import QuoteBand from "@/components/QuoteBand";
 import { processSteps } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "About Us",
-  description: "Learn about Bureau Graphics, a design, print and branding company serving clients from Wilson Airport, Nairobi since 1997.",
+  title: "About Bureau Graphics",
+  description: "Bureau Graphics is a branding and print company serving business and aviation clients from Wilson Airport, Nairobi since 1997.",
+  alternates: { canonical: "/about" },
 };
 
 const values = [
-  { icon: Eye, title: "Quality first", text: "We check artwork, production and finishing before the job leaves our studio." },
-  { icon: Lightbulb, title: "Practical advice", text: "We help clients choose a material and process that fits the real use of the job." },
-  { icon: Handshake, title: "Dependable service", text: "Clear communication and realistic production expectations matter to us." },
-  { icon: Crosshair, title: "Attention to detail", text: "Small production decisions can change how the finished item looks and works." },
+  { icon: Eye, title: "Look closely", text: "Review the artwork, production and finishing before the job leaves the studio." },
+  { icon: Lightbulb, title: "Advise practically", text: "Choose materials and methods around where and how the finished item will be used." },
+  { icon: Handshake, title: "Keep it clear", text: "Agree the brief, proof and production route so everyone knows what happens next." },
+  { icon: ScanLine, title: "Finish properly", text: "Treat binding, lamination and assembly as part of the job, not an afterthought." },
 ] as const;
 
 export default function AboutPage() {
@@ -22,49 +22,33 @@ export default function AboutPage() {
     <main id="main-content">
       <section className="about-hero">
         <div className="site-shell about-hero-grid">
-          <div>
-            <p className="section-label">About Bureau Graphics</p>
-            <h1>Making ideas tangible since 1997.</h1>
-          </div>
-          <div className="about-intro">
-            <p>Bureau Graphics helps individuals, businesses and aviation organisations turn ideas and information into professional printed products.</p>
-            <Link href="/contact" className="inline-link">Talk to our team <ArrowRight size={17} /></Link>
-          </div>
+          <div><p className="context-label">About Bureau Graphics</p><h1>Making brands and information tangible since 1997.</h1></div>
+          <div className="about-intro"><p>Bureau Graphics helps businesses, institutions and aviation organisations move from an idea or approved file to a finished printed result.</p><div className="year-block"><strong>1997</strong><span>Established in Nairobi</span></div></div>
         </div>
-        <div className="about-year" aria-hidden="true">1997</div>
       </section>
 
       <section className="section story-section">
         <div className="site-shell story-grid">
-          <div><p className="section-label">Our point of view</p><h2>More than a print shop. A production partner.</h2></div>
-          <div className="story-copy">
-            <p>Our work starts before the machine runs. We look at the purpose, size, quantity, material and finishing so the production route makes sense from the beginning.</p>
-            <p>Our Wilson Airport location keeps us close to aviation clients, while our wider capability supports companies, schools, institutions and individuals across Nairobi and Kenya.</p>
-          </div>
+          <div><p className="context-label">Our point of view</p><h2>Good production starts before the machine runs.</h2></div>
+          <div className="story-copy"><p>The job is not simply ink on a surface. It starts with the purpose, quantity, size, material and finish—then continues through artwork and proof approval.</p><p>Our Wilson Airport location keeps us close to aviation clients. The wider studio supports brand, business print, signage, merchandise and finished documents for clients across Nairobi and beyond.</p></div>
         </div>
       </section>
 
       <section className="section values-section">
         <div className="site-shell">
-          <div className="section-heading"><p className="section-label">What guides the work</p><h2>Simple values. Visible in the finish.</h2></div>
-          <div className="values-grid">
-            {values.map(({ icon: Icon, title, text }, index) => (
-              <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><Icon size={25} /><h3>{title}</h3><p>{text}</p></article>
-            ))}
-          </div>
+          <div className="section-heading compact-heading"><p className="context-label">How we approach the work</p><h2>Useful principles, visible in the result.</h2></div>
+          <div className="values-grid">{values.map(({ icon: Icon, title, text }) => <article key={title}><Icon size={24} /><h3>{title}</h3><p>{text}</p></article>)}</div>
         </div>
       </section>
 
       <section className="section about-process">
         <div className="site-shell">
-          <div className="section-heading heading-split"><div><p className="section-label">How we work</p><h2>Clear at every stage.</h2></div><p>A shared process helps our team and the client know what happens next.</p></div>
-          <div className="process-grid">
-            {processSteps.map(([number, title, text]) => <article key={number}><div className="process-top"><span>{number}</span></div><h3>{title}</h3><p>{text}</p></article>)}
-          </div>
+          <div className="section-heading heading-split"><div><p className="context-label">A clear route</p><h2>From brief to finished.</h2></div><p>Each stage answers a practical question before the next begins.</p></div>
+          <ol className="process-cards">{processSteps.map(([number, title, text, status]) => <li key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p><small>{status}</small></li>)}</ol>
         </div>
       </section>
 
-      <section className="section home-location about-location"><div className="site-shell"><LocationCard /></div></section>
+      <section className="section about-location"><div className="site-shell"><LocationCard /></div></section>
       <QuoteBand />
     </main>
   );

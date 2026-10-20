@@ -1,37 +1,30 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import ProductIntent from "@/components/ProductIntent";
 import QuoteBand from "@/components/QuoteBand";
 import ServiceCard from "@/components/ServiceCard";
 import { services } from "@/data/site";
+import { ButtonLink } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
-  title: "Printing & Branding Services",
-  description: "Explore UV, large format, digital printing, branding and finishing services from Bureau Graphics in Nairobi.",
+  title: "Branding & Printing Services in Nairobi",
+  description: "Explore branding, graphic design, UV, large-format and digital printing, plus professional print finishing in Nairobi.",
+  alternates: { canonical: "/services" },
 };
-
-const guide = [
-  ["A product or rigid surface", "UV printing"],
-  ["A banner, window or large plan", "Large format"],
-  ["Business stationery or booklets", "Digital printing"],
-  ["A campaign or branded merchandise", "Branding & design"],
-  ["A manual, report or protected document", "Print finishing"],
-] as const;
 
 export default function ServicesPage() {
   return (
     <main id="main-content">
       <section className="page-hero services-hero">
         <div className="site-shell page-hero-grid">
-          <div>
-            <p className="section-label">Services</p>
-            <h1>From one sticker to a full brand rollout.</h1>
-          </div>
+          <div><p className="context-label">Services</p><h1>Start with what you need to make.</h1></div>
           <div className="page-hero-aside">
-            <p>Not sure which process fits your job? Tell us the product, quantity, size and deadline. We will help you choose.</p>
-            <Link href="/contact#quote" className="inline-link">Ask for production advice <ArrowRight size={17} /></Link>
+            <p>Branding leads our work, backed by the print and finishing capability to carry an identity across real products and spaces.</p>
+            <ButtonLink href="/contact#quote" variant="secondary">Ask for production advice</ButtonLink>
           </div>
         </div>
+        <div className="site-shell product-intent-wrap"><ProductIntent /></div>
       </section>
 
       <section className="section services-index">
@@ -40,22 +33,10 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="section choose-section">
-        <div className="site-shell choose-grid">
-          <div className="choose-heading">
-            <p className="section-label light">Quick guide</p>
-            <h2>What are you making?</h2>
-            <p>Start with the finished item. The right production process becomes much easier to identify from there.</p>
-          </div>
-          <div className="choose-list">
-            {guide.map(([need, answer], index) => (
-              <div key={need}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <p>{need}</p>
-                <strong><Check size={16} /> {answer}</strong>
-              </div>
-            ))}
-          </div>
+      <section className="section service-decision">
+        <div className="site-shell decision-grid">
+          <div><p className="context-label">Not sure where it fits?</p><h2>Describe the finished item, not the machine.</h2></div>
+          <div><p>Tell us where it will be used, how many you need, the size, and when it is required. We will recommend a sensible production route.</p><Link href="/contact#quote" className="inline-link">Build a useful quote <ArrowRight size={16} /></Link></div>
         </div>
       </section>
 

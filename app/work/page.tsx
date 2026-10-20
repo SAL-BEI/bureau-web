@@ -1,67 +1,55 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import ClientLogoRail from "@/components/ClientLogoRail";
 import QuoteBand from "@/components/QuoteBand";
+import { services, workPreviews } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Our Work",
-  description: "Explore the types of aviation, UV, corporate, large-format and document production handled by Bureau Graphics.",
+  title: "Print & Branding Capabilities",
+  description: "Explore Bureau Graphics capabilities across branded products, large-format output, business print and document finishing.",
+  alternates: { canonical: "/work" },
 };
-
-const workTypes = [
-  { number: "01", title: "Aviation documents", text: "QRHs, checklists, logbooks, manuals, crew cards and technical reference material.", className: "work-blue" },
-  { number: "02", title: "UV branded products", text: "Acrylic, ABS, diaries, selected merchandise and UV DTF applications.", className: "work-violet" },
-  { number: "03", title: "Corporate print", text: "Business stationery, booklets, brochures, NCR books and campaign material.", className: "work-red" },
-  { number: "04", title: "Large-format output", text: "Banners, window graphics, plans, technical drawings and display print.", className: "work-orange" },
-  { number: "05", title: "Signs & graphics", text: "Brand graphics, office signs, stickers, placards and visual communication.", className: "work-cyan" },
-  { number: "06", title: "Document finishing", text: "Velo, wire and spiral binding, lamination and complete document assembly.", className: "work-dark" },
-] as const;
 
 export default function WorkPage() {
   return (
     <main id="main-content">
       <section className="page-hero work-hero">
-        <div className="site-shell work-hero-grid">
-          <div>
-            <p className="section-label">Our work</p>
-            <h1>Useful things.<br /><em>Made beautifully.</em></h1>
-          </div>
-          <div className="work-hero-image">
-            <Image src="/aviation-hero.png" fill priority sizes="(max-width: 900px) 100vw, 44vw" alt="Selection of Bureau Graphics aviation print work" />
-          </div>
+        <div className="site-shell page-hero-grid">
+          <div><p className="context-label">Capability preview</p><h1>From identity to a finished, useful object.</h1></div>
+          <div className="page-hero-aside"><p>These illustrative previews show the type of work we can produce. Ask for relevant physical or recent samples when discussing your project.</p><Link href="/contact#quote" className="inline-link">Ask about your project <ArrowRight size={16} /></Link></div>
         </div>
       </section>
 
-      <section className="section work-index">
-        <div className="site-shell">
-          <div className="section-heading heading-split">
-            <div><p className="section-label">What leaves our studio</p><h2>One team. Many formats.</h2></div>
-            <p>This page shows the kinds of work we produce. Ask us for relevant samples when discussing your specific project.</p>
+      <section className="section work-showcase">
+        <div className="site-shell work-preview-grid">
+          {workPreviews.map((item) => (
+            <article className="work-preview" key={item.title}>
+              <Link href={item.href} className="work-preview-image">
+                <Image src={item.image} fill sizes="(max-width: 760px) 100vw, 34vw" alt={`Illustrative ${item.title.toLowerCase()} capability preview`} />
+                <span>Illustrative capability preview</span>
+              </Link>
+              <div><p className="context-label">{item.service}</p><h2>{item.title}</h2><p>{item.description}</p><Link href={item.href} className="inline-link">Explore service <ArrowRight size={16} /></Link></div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section capability-matrix-section">
+        <div className="site-shell capability-matrix-grid">
+          <div><p className="context-label">The wider range</p><h2>One brief can cross several formats.</h2><p>A launch might need an identity, stationery, merchandise, event graphics and finishing. Keeping those decisions with one production team helps the result stay consistent.</p></div>
+          <div className="capability-matrix">
+            {services.map((service) => <Link href={`/services/${service.slug}`} key={service.slug}><span className={`matrix-mark accent-${service.accent}`} /><strong>{service.title}</strong><small>{service.facts.join(" · ")}</small><ArrowRight size={17} /></Link>)}
           </div>
-          <div className="work-grid">
-            {workTypes.map((item) => (
-              <article className={item.className} key={item.title}>
-                <span>{item.number}</span>
-                <div><h2>{item.title}</h2><p>{item.text}</p></div>
-                <ArrowUpRight size={24} />
-              </article>
-            ))}
-          </div>
-          <Link href="/contact#quote" className="work-enquiry">Ask for samples for your job <ArrowRight size={18} /></Link>
         </div>
       </section>
 
       <section className="section client-section work-clients">
-        <div className="site-shell section-heading client-heading">
-          <p className="section-label">Organisations we support</p>
-          <h2>Work that travels across teams, schools and skies.</h2>
-        </div>
-        <ClientLogoRail />
+        <div className="site-shell"><div className="section-heading compact-heading"><p className="context-label">Selected clients</p><h2>Organisations we have supported.</h2></div><ClientLogoRail /></div>
       </section>
 
-      <QuoteBand />
+      <QuoteBand title="Let’s turn the brief into something people can hold, see or use." />
     </main>
   );
 }

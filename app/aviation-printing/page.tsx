@@ -1,68 +1,84 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check, FileCheck2, Gauge, Layers3 } from "lucide-react";
+import { ArrowRight, Check, FileCheck2, Layers3, MapPin } from "lucide-react";
+import JsonLd from "@/components/JsonLd";
+import LocationCard from "@/components/LocationCard";
 import QuoteBand from "@/components/QuoteBand";
+import { ButtonLink } from "@/components/ui/Button";
 import { aviationItems } from "@/data/site";
+import { siteFacts } from "@/lib/site-facts";
 
 export const metadata: Metadata = {
-  title: "Aviation Printing",
-  description: "Technical logbooks, QRHs, checklists, aviation manuals, crew cards, maps, placards and aviation merchandise in Nairobi.",
+  title: "Aviation Printing in Nairobi",
+  description: "QRHs, technical logbooks, checklists, manuals, crew cards, aviation maps, placards and merchandise from Wilson Airport, Nairobi.",
+  alternates: { canonical: "/aviation-printing" },
+};
+
+const aviationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Aviation printing",
+  description: "Printing and finishing for aviation manuals, logbooks, checklists, cards, maps, placards and merchandise.",
+  url: `${siteFacts.siteUrl}/aviation-printing`,
+  provider: { "@id": `${siteFacts.siteUrl}/#business` },
+  areaServed: "Kenya",
 };
 
 export default function AviationPrintingPage() {
   return (
     <main id="main-content" className="aviation-page">
+      <JsonLd data={aviationSchema} />
       <section className="aviation-page-hero">
         <div className="site-shell aviation-page-grid">
           <div className="aviation-page-copy">
-            <p className="section-label light">Aviation printing</p>
-            <h1>Precision belongs in every detail.</h1>
-            <p>Specialised production for operators, training organisations, engineers and flight crews from our Wilson Airport base.</p>
+            <p className="context-label on-dark">Aviation printing</p>
+            <h1>Clear on the ground. Ready for the flight deck.</h1>
+            <p>Specialised print and finishing for operators, training organisations, engineers and flight crews—from our base at Wilson Airport.</p>
             <div className="hero-actions">
-              <Link href="/contact#quote" className="button button-white">Request aviation quote <ArrowRight size={18} /></Link>
-              <a href="#capabilities" className="text-button text-button-light">See capabilities</a>
+              <ButtonLink href="/contact?service=Aviation%20printing#quote" variant="on-dark" size="lg">Request an aviation quote</ButtonLink>
+              <Link href="#capabilities" className="light-link">View the range <ArrowRight size={16} /></Link>
             </div>
+            <ul className="aviation-proof">
+              <li><MapPin size={16} /> Wilson Airport based</li>
+              <li><FileCheck2 size={16} /> Proof before production</li>
+              <li><Layers3 size={16} /> Print and finishing together</li>
+            </ul>
           </div>
-          <div className="aviation-page-image">
-            <Image src="/aviation-hero.png" fill priority sizes="(max-width: 900px) 100vw, 52vw" alt="Aviation manuals, cockpit cards and branded products" />
-            <span>Wilson Airport · Nairobi</span>
-          </div>
-        </div>
-      </section>
-
-      <section className="aviation-principles">
-        <div className="site-shell principle-grid">
-          <article><FileCheck2 /><span>01</span><h2>Clear artwork</h2><p>Layouts checked carefully before production begins.</p></article>
-          <article><Gauge /><span>02</span><h2>Practical materials</h2><p>Material and finish chosen around the document’s use.</p></article>
-          <article><Layers3 /><span>03</span><h2>Complete finishing</h2><p>Printing, binding and lamination managed together.</p></article>
+          <figure className="aviation-hero-visual">
+            <Image src="/visuals/aviation-range.webp" fill priority sizes="(max-width: 900px) 100vw, 49vw" alt="Illustrative aviation print products including manuals and crew items" />
+            <figcaption>Illustrative capability preview</figcaption>
+          </figure>
         </div>
       </section>
 
       <section className="section aviation-capabilities" id="capabilities">
         <div className="site-shell capabilities-grid">
           <div className="sticky-heading">
-            <p className="section-label">What we produce</p>
-            <h2>Made for the people who keep aircraft moving.</h2>
-            <p>Share your approved file, required size, quantity and finish. We will confirm the production route before printing.</p>
+            <p className="context-label">Publication range</p>
+            <h2>For reference, operation, training and the aircraft itself.</h2>
+            <p>Provide the approved source content, required format, quantity and finish. We will confirm the production route before printing.</p>
           </div>
-          <div className="aviation-item-list">
-            {aviationItems.map((item, index) => (
-              <div key={item}><span>{String(index + 1).padStart(2, "0")}</span><h3>{item}</h3><Check size={18} /></div>
-            ))}
-          </div>
+          <ul className="aviation-item-list">
+            {aviationItems.map((item) => <li key={item}><Check size={17} /><span>{item}</span></li>)}
+          </ul>
         </div>
       </section>
 
-      <section className="section aviation-location-note">
-        <div className="site-shell editorial-note">
-          <p>Based where aviation happens</p>
-          <h2>Wilson Airport is not just our address. It shapes how we understand the work.</h2>
-          <Link href="/about" className="inline-link">About Bureau Graphics <ArrowRight size={17} /></Link>
+      <section className="section aviation-control-section">
+        <div className="site-shell control-grid">
+          <div><p className="context-label">Production discipline</p><h2>Approved content in. Carefully finished output out.</h2></div>
+          <div className="control-cards">
+            <article><span>01</span><h3>Source check</h3><p>Confirm the supplied file, size, page order and version before the job is released.</p></article>
+            <article><span>02</span><h3>Proof and finish</h3><p>Review the digital proof and agree the binding, lamination or assembly route.</p></article>
+            <article><span>03</span><h3>Production check</h3><p>Print, finish and inspect the physical output before collection or agreed delivery.</p></article>
+          </div>
+          <p className="aviation-responsibility">The customer remains responsible for approving technical content and revision status. Bureau Graphics produces from the supplied, approved artwork.</p>
         </div>
       </section>
 
-      <QuoteBand title="Your next aviation print job can start right here." />
+      <section className="section aviation-location"><div className="site-shell"><LocationCard /></div></section>
+      <QuoteBand title="Have an aviation publication ready to produce?" context="Aviation printing" />
     </main>
   );
 }
