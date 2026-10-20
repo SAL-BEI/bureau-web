@@ -12,7 +12,7 @@ const hostname = valueAfter("--host", valueAfter("--hostname", "localhost"));
 const port = valueAfter("--port", "3000");
 const nextBin = fileURLToPath(new URL("../node_modules/next/dist/bin/next", import.meta.url));
 
-const child = spawn(process.execPath, [nextBin, "dev", "-H", hostname, "-p", port], {
+const child = spawn(process.execPath, [nextBin, "dev", "--webpack", "-H", hostname, "-p", port], {
   stdio: "inherit",
 });
 
