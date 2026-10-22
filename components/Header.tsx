@@ -41,6 +41,14 @@ export default function Header() {
     return () => document.removeEventListener("keydown", closeOnEscape);
   }, []);
 
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    if (menuOpen) document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [menuOpen]);
+
   const closeMenus = () => {
     setMenuOpen(false);
     setServicesOpen(false);
