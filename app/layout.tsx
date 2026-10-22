@@ -20,7 +20,15 @@ export const metadata: Metadata = {
     google: "ng3cGYjZwbGr5C75Qus5iOjP2GaHBe7AbtKbZKP43D0",
   },
   alternates: { canonical: "/" },
-  icons: { icon: "/favicon.svg" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48", type: "image/x-icon" },
+      { url: "/favicon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   openGraph: {
     type: "website",
     locale: "en_KE",
@@ -40,14 +48,26 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { themeColor: "#f6f5f0", colorScheme: "light" };
 
+const brandLogoUrl = `${siteFacts.siteUrl}/bureau-graphics-mark-512.png`;
+
 const businessSchema = {
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "ProfessionalService"],
   "@id": `${siteFacts.siteUrl}/#business`,
   name: siteFacts.name,
+  alternateName: siteFacts.legalName,
   legalName: siteFacts.legalName,
+  description: "Branding, graphic design, printing, finishing and specialised aviation publications from Wilson Airport, Nairobi.",
   url: siteFacts.siteUrl,
-  logo: `${siteFacts.siteUrl}/bureau-graphics-logo-transparent.png`,
+  logo: {
+    "@type": "ImageObject",
+    "@id": `${siteFacts.siteUrl}/#logo`,
+    url: brandLogoUrl,
+    contentUrl: brandLogoUrl,
+    width: 512,
+    height: 512,
+    caption: siteFacts.name,
+  },
   image: `${siteFacts.siteUrl}/opengraph-image.jpg`,
   foundingDate: String(siteFacts.established),
   telephone: siteFacts.phoneE164,
@@ -61,12 +81,22 @@ const businessSchema = {
   areaServed: { "@type": "Country", name: siteFacts.country },
 };
 
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteFacts.siteUrl}/#website`,
+  url: `${siteFacts.siteUrl}/`,
+  name: siteFacts.name,
+  alternateName: [siteFacts.legalName, "bureaugraphics.com"],
+  publisher: { "@id": `${siteFacts.siteUrl}/#business` },
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body>
         <a href="#main-content" className="skip-link">Skip to content</a>
-        <JsonLd data={businessSchema} />
+        <JsonLd data={[businessSchema, websiteSchema]} />
         <Header />
         {children}
         <Footer />
