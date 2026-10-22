@@ -13,7 +13,7 @@ export const siteFacts = {
   name: "Bureau Graphics",
   legalName: "Bureau Graphics Limited",
   established: 1997,
-  siteUrl: "https://bureau-web-blond.vercel.app",
+  siteUrl: "https://bureaugraphics.com",
   phoneDisplay: "0745 117 558",
   phoneE164: "+254745117558",
   secondaryPhoneDisplay: "0117 524 040",
@@ -23,8 +23,7 @@ export const siteFacts = {
   address: "Wilson Airport, Exit Lane, KAA Building No. 49, Nairobi",
   locality: "Nairobi",
   country: "Kenya",
-  // TODO(owner): Confirm the production domain before replacing the preview URL.
-  productionDomain: null as string | null,
+  productionDomain: "https://bureaugraphics.com",
   // TODO(owner): Create and confirm the domain mailbox before replacing Gmail.
   domainEmail: null as string | null,
   // TODO(owner): Confirm weekly hours before enabling the open-now display.
