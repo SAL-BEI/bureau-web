@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     url: "/",
     siteName: siteFacts.name,
     title: "Bureau Graphics | Branding and print, done properly",
-    description: "Branding, print and aviation production from Wilson Airport, Nairobi, since 1997.",
+    description: "Branding, print and aviation production from Wilson Airport, Nairobi.",
     images: [{ url: "/opengraph-image.jpg", width: 1200, height: 630, alt: "Bureau Graphics branding and print" }],
   },
   twitter: {
@@ -69,7 +69,6 @@ const businessSchema = {
     caption: siteFacts.name,
   },
   image: `${siteFacts.siteUrl}/opengraph-image.jpg`,
-  foundingDate: String(siteFacts.established),
   telephone: siteFacts.phoneE164,
   email: siteFacts.email,
   address: {

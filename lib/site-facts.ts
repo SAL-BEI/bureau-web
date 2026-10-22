@@ -12,7 +12,6 @@ export type QuoteDetails = {
 export const siteFacts = {
   name: "Bureau Graphics",
   legalName: "Bureau Graphics Limited",
-  established: 1997,
   siteUrl: "https://www.bureaugraphics.com",
   phoneDisplay: "0745 117 558",
   phoneE164: "+254745117558",
