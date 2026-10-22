@@ -21,7 +21,8 @@ export default function LocationCard() {
         <div className="location-actions">
           <a href={mapsDirectionsUrl} target="_blank" rel="noreferrer" className="location-primary"><Navigation size={17} /> Google Maps</a>
           <a href={wazeDirectionsUrl} target="_blank" rel="noreferrer"><CarFront size={17} /> Waze</a>
-          <a href={`tel:${siteFacts.phoneE164}`}><Phone size={17} /> Call</a>
+          <a href={`tel:${siteFacts.phoneE164}`}><Phone size={17} /> {siteFacts.phoneDisplay}</a>
+          <a href={`tel:${siteFacts.secondaryPhoneE164}`}><Phone size={17} /> {siteFacts.secondaryPhoneDisplay}</a>
           <a href={buildWhatsAppUrl({ topic: "Directions to your Wilson Airport studio" })} target="_blank" rel="noreferrer"><MessageCircle size={17} /> WhatsApp</a>
         </div>
       </div>

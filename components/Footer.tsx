@@ -36,7 +36,8 @@ export default function Footer() {
 
         <div className="footer-links footer-contact">
           <h2>Find us</h2>
-          <a href={`tel:${siteFacts.phoneE164}`}>{siteFacts.phoneDisplay}</a>
+          <a href={`tel:${siteFacts.phoneE164}`}>Primary: {siteFacts.phoneDisplay}</a>
+          <a href={`tel:${siteFacts.secondaryPhoneE164}`}>Alternate: {siteFacts.secondaryPhoneDisplay}</a>
           <a href={`mailto:${siteFacts.email}`}>{siteFacts.email}</a>
           <a href={mapsDirectionsUrl} target="_blank" rel="noreferrer">{siteFacts.address}</a>
         </div>

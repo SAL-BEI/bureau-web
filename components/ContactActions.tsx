@@ -4,8 +4,9 @@ import { buildEmailUrl, buildWhatsAppUrl, mapsDirectionsUrl, siteFacts } from "@
 export default function ContactActions({ context }: { context?: string }) {
   const details = context ? { topic: context } : {};
   const actions = [
-    { label: "WhatsApp", detail: "Start a quotation", href: buildWhatsAppUrl(details), icon: MessageCircle, external: true, className: "whatsapp" },
-    { label: "Call", detail: siteFacts.phoneDisplay, href: `tel:${siteFacts.phoneE164}`, icon: Phone, className: "call" },
+    { label: "WhatsApp", detail: siteFacts.phoneDisplay, href: buildWhatsAppUrl(details), icon: MessageCircle, external: true, className: "whatsapp" },
+    { label: "Call primary", detail: siteFacts.phoneDisplay, href: `tel:${siteFacts.phoneE164}`, icon: Phone, className: "call" },
+    { label: "Call alternate", detail: siteFacts.secondaryPhoneDisplay, href: `tel:${siteFacts.secondaryPhoneE164}`, icon: Phone, className: "call" },
     { label: "Email", detail: siteFacts.email, href: buildEmailUrl(details), icon: Mail, className: "email" },
     { label: "Directions", detail: "Wilson Airport", href: mapsDirectionsUrl, icon: MapPin, external: true, className: "visit" },
   ];

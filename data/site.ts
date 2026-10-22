@@ -137,19 +137,6 @@ export const clientLogos = [
   ["Helint", "030"], ["Skypath Aviation College", "031"], ["Balloon Safaris", "032"],
 ] as const;
 
-const featuredClientNames = new Set([
-  "Renegade Air",
-  "Kenya Airports Authority",
-  "Sunshine Schools",
-  "Kenya School of Flying",
-  "AMREF Flying Doctors",
-  "Safarilink",
-  "Fly ALS",
-  "Ninety Nines",
-]);
-
-export const featuredClientLogos = clientLogos.filter(([name]) => featuredClientNames.has(name));
-
 export const processSteps = [
   ["01", "Share the brief", "Tell us the product, size, quantity, finish and required date.", "Received"],
   ["02", "Confirm the route", "We recommend the production method and prepare the quotation.", "Confirmed"],

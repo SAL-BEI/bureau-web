@@ -51,6 +51,7 @@ export default function Header() {
       <div className="utility-bar">
         <div className="site-shell utility-inner">
           <a href={`tel:${siteFacts.phoneE164}`}><Phone size={13} /> {siteFacts.phoneDisplay}</a>
+          <a href={`tel:${siteFacts.secondaryPhoneE164}`}><Phone size={13} /> {siteFacts.secondaryPhoneDisplay}</a>
           <a href={mapsDirectionsUrl} target="_blank" rel="noreferrer">
             <MapPin size={13} /> Wilson Airport, KAA Building No. 49
           </a>

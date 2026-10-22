@@ -2,6 +2,8 @@ import { buildEmailUrl, buildWhatsAppUrl, mapsDirectionsUrl, siteFacts } from "@
 
 export const PHONE_DISPLAY = siteFacts.phoneDisplay;
 export const PHONE_E164 = siteFacts.phoneE164;
+export const SECONDARY_PHONE_DISPLAY = siteFacts.secondaryPhoneDisplay;
+export const SECONDARY_PHONE_E164 = siteFacts.secondaryPhoneE164;
 export const WHATSAPP_NUMBER = siteFacts.whatsappNumber;
 export const EMAIL = siteFacts.email;
 export const ADDRESS = siteFacts.address;
