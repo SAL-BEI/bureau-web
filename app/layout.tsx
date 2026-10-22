@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   description: "Branding, graphic design, UV, large-format and digital printing, finishing and aviation publications from Wilson Airport, Nairobi.",
   applicationName: "Bureau Graphics",
   category: "Printing and branding",
+  verification: {
+    google: "ng3cGYjZwbGr5C75Qus5iOjP2GaHBe7AbtKbZKP43D0",
+  },
   alternates: { canonical: "/" },
   icons: { icon: "/favicon.svg" },
   openGraph: {
