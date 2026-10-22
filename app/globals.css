@@ -504,13 +504,13 @@
 
   /* About */
   .about-hero { position: relative; overflow: hidden; padding: clamp(72px, 10vw, 132px) 0; border-bottom: 1px solid var(--line); background: var(--paper); }
-  .about-hero::after { content: "1997"; position: absolute; right: -0.03em; bottom: -0.27em; color: rgba(38,60,155,0.055); font-size: min(34vw, 490px); font-weight: 900; letter-spacing: -0.1em; line-height: 1; pointer-events: none; }
+  .about-hero::after { content: "HELLO"; position: absolute; right: -0.03em; bottom: -0.27em; color: rgba(38,60,155,0.055); font-size: min(34vw, 490px); font-weight: 900; letter-spacing: -0.1em; line-height: 1; pointer-events: none; }
   .about-hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.62fr); gap: clamp(56px, 9vw, 135px); align-items: end; }
   .about-hero h1 { margin-bottom: 0; }
   .about-intro > p { font-size: 1.08rem; line-height: 1.74; }
-  .year-block { display: flex; align-items: baseline; gap: 12px; margin-top: 31px; padding-top: 19px; border-top: 1px solid var(--line-strong); }
-  .year-block strong { color: var(--red); font-size: 2.1rem; letter-spacing: -0.06em; }
-  .year-block span { color: var(--ink); font-size: 0.73rem; font-weight: 800; }
+  .about-promise { display: flex; align-items: baseline; gap: 12px; margin-top: 31px; padding-top: 19px; border-top: 1px solid var(--line-strong); }
+  .about-promise strong { color: var(--red); font-size: 2.1rem; letter-spacing: -0.06em; }
+  .about-promise span { color: var(--ink); font-size: 0.73rem; font-weight: 800; }
   .story-section { background: var(--card); }
   .story-grid { display: grid; grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1fr); gap: clamp(55px, 10vw, 140px); }
   .story-copy p { font-size: clamp(1.05rem, 1.8vw, 1.35rem); line-height: 1.7; }

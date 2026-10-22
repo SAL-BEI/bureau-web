@@ -6,7 +6,7 @@ import { processSteps } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "About Bureau Graphics",
-  description: "Bureau Graphics is a branding and print company serving business and aviation clients from Wilson Airport, Nairobi since 1997.",
+  description: "Meet the branding and print team serving business and aviation clients from Wilson Airport, Nairobi.",
   alternates: { canonical: "/about" },
 };
 
@@ -22,8 +22,8 @@ export default function AboutPage() {
     <main id="main-content">
       <section className="about-hero">
         <div className="site-shell about-hero-grid">
-          <div><p className="context-label">About Bureau Graphics</p><h1>Making brands and information tangible since 1997.</h1></div>
-          <div className="about-intro"><p>Bureau Graphics helps businesses, institutions and aviation organisations move from an idea or approved file to a finished printed result.</p><div className="year-block"><strong>1997</strong><span>Established in Nairobi</span></div></div>
+          <div><p className="context-label">About Bureau Graphics</p><h1>Your ideas, made visible, tangible and memorable.</h1></div>
+          <div className="about-intro"><p>Bureau Graphics helps businesses, institutions and aviation organisations move from an idea or approved file to a finished printed result.</p><div className="about-promise"><strong>One team</strong><span>From idea to finished result</span></div></div>
         </div>
       </section>
 

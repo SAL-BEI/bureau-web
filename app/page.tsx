@@ -23,8 +23,8 @@ export default function HomePage() {
       <section className="home-hero">
         <div className="site-shell home-hero-grid">
           <div className="hero-copy">
-            <p className="context-label">Nairobi · Wilson Airport · Since 1997</p>
-            <h1>Branding and print, done properly since 1997.</h1>
+            <p className="context-label">Nairobi · Wilson Airport · Your brand starts here</p>
+            <h1>Bring your brand to life. We’ll make it hard to miss.</h1>
             <p className="hero-intro">From branded merchandise and signs to digital print and aviation publications, one team handles your job from artwork to finishing at Wilson Airport, Nairobi.</p>
             <div className="hero-actions">
               <ButtonLink href="/contact#quote" size="lg" eventName="hero_quote">Get a quote</ButtonLink>
@@ -32,7 +32,7 @@ export default function HomePage() {
             </div>
             <ul className="hero-proof" aria-label="Why work with Bureau Graphics">
               <li><Check size={15} /> Design to finishing</li>
-              <li><Check size={15} /> Established 1997</li>
+              <li><Check size={15} /> Built around your brief</li>
               <li><Check size={15} /> Wilson Airport based</li>
             </ul>
           </div>

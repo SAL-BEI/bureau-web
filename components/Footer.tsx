@@ -44,7 +44,7 @@ export default function Footer() {
       </div>
       <div className="site-shell footer-bottom">
         <span>© {new Date().getFullYear()} Bureau Graphics Limited</span>
-        <span>Established 1997</span>
+        <span>Made with care in Nairobi</span>
         <Link href="/privacy">Privacy</Link>
       </div>
     </footer>
