@@ -11,15 +11,17 @@ export default function AviationShowcase() {
   const active = aviationHighlights.find((item) => item.id === activeId) ?? aviationHighlights[0];
 
   return (
-    <div className="aviation-showcase">
+    <div className="aviation-showcase" data-reveal>
       <div className="aviation-showcase-media">
         <Image
-          src="/visuals/aviation-publications.webp"
+          key={active.image}
+          src={active.image}
           fill
+          quality={90}
           sizes="(max-width: 900px) 100vw, 52vw"
-          alt="Illustrative aviation manuals, logbook, checklist, lanyard and tumbler"
+          alt={active.imageAlt}
         />
-        <span>Illustrative capability preview</span>
+        <span>Real Bureau Graphics project</span>
       </div>
       <div className="aviation-showcase-panel">
         <p className="context-label on-dark">Aviation specialism</p>

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check, FileCheck2, Layers3, MapPin } from "lucide-react";
 import JsonLd from "@/components/JsonLd";
 import LocationCard from "@/components/LocationCard";
 import QuoteBand from "@/components/QuoteBand";
+import AviationHeroCollage from "@/components/AviationHeroCollage";
 import { ButtonLink } from "@/components/ui/Button";
 import { aviationItems } from "@/data/site";
 import { siteFacts } from "@/lib/site-facts";
@@ -45,10 +45,7 @@ export default function AviationPrintingPage() {
               <li><Layers3 size={16} /> Print and finishing together</li>
             </ul>
           </div>
-          <figure className="aviation-hero-visual">
-            <Image src="/visuals/aviation-range.webp" fill priority sizes="(max-width: 900px) 100vw, 49vw" alt="Illustrative aviation print products including manuals and crew items" />
-            <figcaption>Illustrative capability preview</figcaption>
-          </figure>
+          <AviationHeroCollage />
         </div>
       </section>
 

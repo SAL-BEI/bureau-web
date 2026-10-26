@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import ContactActions from "@/components/ContactActions";
 import JsonLd from "@/components/JsonLd";
 import QuoteBand from "@/components/QuoteBand";
-import ServiceArt from "@/components/ServiceArt";
 import { getService, services } from "@/data/site";
 import { siteFacts } from "@/lib/site-facts";
 
@@ -58,13 +58,16 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           <Link href="/services" className="back-link"><ArrowLeft size={16} /> All services</Link>
           <div className="service-detail-grid">
             <div><p className="context-label">{service.shortTitle}</p><h1>{service.title}</h1><p className="service-detail-lead">{service.strapline}</p></div>
-            <ServiceArt art={service.art} />
+            <figure className="service-detail-media" data-reveal>
+              <Image src={service.image} alt={service.imageAlt} fill priority quality={90} sizes="(max-width: 900px) 100vw, 38vw" style={{ objectPosition: service.imagePosition ?? "center" }} />
+              <figcaption>Real Bureau Graphics work</figcaption>
+            </figure>
           </div>
         </div>
       </section>
 
       <section className="section service-overview">
-        <div className="site-shell overview-grid">
+        <div className="site-shell overview-grid" data-reveal>
           <div><p className="context-label">What it covers</p><h2>Made for the job in front of you.</h2><p>{service.description}</p></div>
           <ul className="capability-list">
             {service.items.map((item) => <li key={item}><Check size={17} /><span>{item}</span></li>)}
@@ -73,7 +76,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       </section>
 
       <section className="section service-fit-section">
-        <div className="site-shell service-fit-grid">
+        <div className="site-shell service-fit-grid" data-reveal>
           <div><p className="context-label">A good fit for</p><h2>Where this service is most useful.</h2></div>
           <div className="best-for-list">{service.bestFor.map((item) => <span key={item}>{item}</span>)}</div>
           <div className="service-contact-panel" id="quote">

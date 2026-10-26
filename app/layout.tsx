@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
+import "@fontsource-variable/inter/wght.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
+import MotionEffects from "@/components/MotionEffects";
 import StickyActionBar from "@/components/StickyActionBar";
 import WhatsAppBubble from "@/components/WhatsAppBubble";
 import { siteFacts } from "@/lib/site-facts";
@@ -96,6 +98,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <a href="#main-content" className="skip-link">Skip to content</a>
         <JsonLd data={[businessSchema, websiteSchema]} />
+        <MotionEffects />
         <Header />
         {children}
         <Footer />
