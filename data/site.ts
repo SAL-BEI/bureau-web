@@ -13,6 +13,9 @@ export type Service = {
   accent: ServiceAccent;
   art: ServiceArt;
   facts: string[];
+  image: string;
+  imageAlt: string;
+  imagePosition?: string;
   featured?: boolean;
 };
 
@@ -28,6 +31,8 @@ export const services: Service[] = [
     items: ["Graphic design", "Corporate merchandise", "Artwork preparation", "Campaign print support", "Brand application"],
     bestFor: ["Brand launches", "Staff merchandise", "Customer gifts", "Campaign rollouts"],
     facts: ["Graphic design", "Corporate merchandise", "Print-ready artwork"],
+    image: "/portfolio/bureau-brand-kit.jpg",
+    imageAlt: "Bureau Graphics branded merchandise, display items and promotional products",
     accent: "cyan",
     art: "swatches",
     featured: true,
@@ -43,6 +48,8 @@ export const services: Service[] = [
     items: ["UV flatbed printing", "UV rotary printing", "UV DTF stickers", "Acrylic and ABS branding", "Diary and merchandise branding"],
     bestFor: ["Corporate gifts", "Product labels", "Office signs", "Short custom runs"],
     facts: ["Acrylic and ABS", "Diaries and merchandise", "UV DTF stickers"],
+    image: "/portfolio/branded-notebooks.jpg",
+    imageAlt: "Blue corporate notebooks branded by Bureau Graphics",
     accent: "violet",
     art: "substrates",
   },
@@ -57,6 +64,8 @@ export const services: Service[] = [
     items: ["Banners", "Window graphics", "Print and cut", "Reflective stickers", "Architectural drawings", "Photo printing"],
     bestFor: ["Events", "Retail spaces", "Wayfinding", "Plans and drawings"],
     facts: ["Banners and displays", "Window graphics", "Plans and drawings"],
+    image: "/portfolio/exhibition-stand.jpg",
+    imageAlt: "Exhibition stand graphics produced by Bureau Graphics",
     accent: "orange",
     art: "scale",
   },
@@ -71,6 +80,8 @@ export const services: Service[] = [
     items: ["Business cards", "Flyers and brochures", "Posters", "Manuals and booklets", "Receipt and NCR books"],
     bestFor: ["Business stationery", "Marketing material", "Training documents", "Short print runs"],
     facts: ["Business stationery", "Brochures and booklets", "Receipt and NCR books"],
+    image: "/portfolio/aviation-handbooks.jpg",
+    imageAlt: "Printed and bound quick reference handbooks produced by Bureau Graphics",
     accent: "blue",
     art: "registration",
   },
@@ -85,6 +96,8 @@ export const services: Service[] = [
     items: ["Velo binding", "Wire binding", "Spiral binding", "Lamination up to A0", "Document assembly"],
     bestFor: ["Manuals", "Reports", "Reference books", "Display material"],
     facts: ["Velo, wire and spiral", "Lamination up to A0", "Document assembly"],
+    image: "/portfolio/binding-equipment.jpg",
+    imageAlt: "Professional document binding equipment at Bureau Graphics",
     accent: "red",
     art: "finishing",
   },
@@ -115,12 +128,12 @@ export const aviationItems = [
 ];
 
 export const aviationHighlights = [
-  { id: "qrh", label: "QRHs", title: "Quick reference handbooks", detail: "Compact reference documents prepared around the supplied approved content." },
-  { id: "logbooks", label: "Logbooks", title: "Technical logbooks", detail: "Bound operational records with the layout and finishing agreed before production." },
-  { id: "checklists", label: "Checklists", title: "Flight and crew checklists", detail: "Clear, usable checklist formats for cockpit, cabin and training use." },
-  { id: "lopa", label: "LOPA", title: "LOPA and equipment books", detail: "Structured books for cabin layout and emergency equipment information." },
-  { id: "placards", label: "Placards", title: "Aircraft placards and decals", detail: "Printed labels, markings and graphics produced from approved artwork." },
-  { id: "maps", label: "Maps", title: "Aviation maps", detail: "Map printing and lamination for reference, briefing and display." },
+  { id: "qrh", label: "QRHs", title: "Quick reference handbooks", detail: "Compact reference documents prepared around the supplied approved content.", image: "/portfolio/aviation-handbooks.jpg", imageAlt: "Quick reference handbooks printed and bound by Bureau Graphics" },
+  { id: "logbooks", label: "Logbooks", title: "Technical logbooks", detail: "Bound operational records with the layout and finishing agreed before production.", image: "/portfolio/technical-logbook.jpg", imageAlt: "Aircraft technical logbook produced by Bureau Graphics" },
+  { id: "checklists", label: "Checklists", title: "Flight and crew checklists", detail: "Clear, usable checklist formats for cockpit, cabin and training use.", image: "/portfolio/dash8-qrh.jpg", imageAlt: "Compact Dash 8 flight reference document produced by Bureau Graphics" },
+  { id: "lopa", label: "LOPA", title: "LOPA and equipment books", detail: "Structured books for cabin layout and emergency equipment information.", image: "/portfolio/cockpit-layout-print.jpg", imageAlt: "Printed cockpit layout and technical reference artwork" },
+  { id: "placards", label: "Placards", title: "Aircraft placards and decals", detail: "Printed labels, markings and graphics produced from approved artwork.", image: "/portfolio/aircraft-placards.jpg", imageAlt: "Aircraft identification placards produced by Bureau Graphics" },
+  { id: "crew-gear", label: "Crew gear", title: "Aviation merchandise", detail: "Branded crew, training and event items made to support a consistent aviation identity.", image: "/portfolio/aviation-lanyards.jpg", imageAlt: "Pilot and crew lanyards produced by Bureau Graphics" },
 ] as const;
 
 export const clientLogos = [
@@ -169,25 +182,28 @@ export const faqs = [
 
 export const workPreviews = [
   {
-    title: "UV-branded products",
-    service: "UV Printing",
-    description: "Acrylic, ABS, diaries, tumblers and transferable UV graphics.",
-    image: "/visuals/uv-products.webp",
-    href: "/services/uv-printing",
+    title: "Brand systems made tangible",
+    service: "Branding & Design",
+    description: "Branded merchandise, event displays and everyday customer touchpoints produced as one visual system.",
+    image: "/portfolio/bureau-brand-kit.jpg",
+    alt: "Bureau Graphics branded merchandise and event display collection",
+    href: "/services/branding",
   },
   {
-    title: "Large-format displays",
+    title: "Aircraft livery and decals",
+    service: "Aviation",
+    description: "Aircraft markings, tail graphics and operational placards produced from approved artwork.",
+    image: "/portfolio/aircraft-livery.jpg",
+    alt: "Branded Renegade Air aircraft photographed after livery production",
+    href: "/aviation-printing",
+  },
+  {
+    title: "Exhibition and display graphics",
     service: "Large Format",
-    description: "Roll-up banners, window graphics, mounted signs and display print.",
-    image: "/visuals/large-format.webp",
+    description: "Real exhibition graphics, signs and display systems prepared for public-facing spaces.",
+    image: "/portfolio/exhibition-stand.jpg",
+    alt: "Completed exhibition stand with large-format graphics",
     href: "/services/large-format-printing",
-  },
-  {
-    title: "Finished documents",
-    service: "Print Finishing",
-    description: "Velo, wire and spiral binding with lamination and document assembly.",
-    image: "/visuals/finishing.webp",
-    href: "/services/finishing",
   },
 ] as const;
 

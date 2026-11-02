@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import AviationShowcase from "@/components/AviationShowcase";
@@ -9,6 +8,7 @@ import HeroProofSheet from "@/components/HeroProofSheet";
 import LocationCard from "@/components/LocationCard";
 import PrePrintChecklist from "@/components/PrePrintChecklist";
 import ProductIntent from "@/components/ProductIntent";
+import ProductionProof from "@/components/ProductionProof";
 import QuoteBand from "@/components/QuoteBand";
 import ServiceCard from "@/components/ServiceCard";
 import { processSteps, services } from "@/data/site";
@@ -25,7 +25,7 @@ export default function HomePage() {
           <div className="hero-copy">
             <p className="context-label">Nairobi · Wilson Airport · Your brand starts here</p>
             <h1>Bring your brand to life. We’ll make it hard to miss.</h1>
-            <p className="hero-intro">From branded merchandise and signs to digital print and aviation publications, one team handles your job from artwork to finishing at Wilson Airport, Nairobi.</p>
+            <p className="hero-intro">From branded merchandise and signs to digital print and aviation publications, one team coordinates your job from artwork to finishing at Wilson Airport, Nairobi.</p>
             <div className="hero-actions">
               <ButtonLink href="/contact#quote" size="lg" eventName="hero_quote">Get a quote</ButtonLink>
               <ButtonLink href={buildWhatsAppUrl()} variant="text" size="lg" target="_blank" rel="noreferrer" eventName="hero_whatsapp">Chat on WhatsApp</ButtonLink>
@@ -44,8 +44,8 @@ export default function HomePage() {
 
       <section className="section services-preview">
         <div className="site-shell">
-          <div className="section-heading heading-split">
-            <div><p className="context-label">Capabilities</p><h2>A brand partner with production under one roof.</h2></div>
+          <div className="section-heading heading-split" data-reveal>
+            <div><p className="context-label">Capabilities</p><h2>One production partner from brief to finish.</h2></div>
             <div><p>Start with the result you need. We will guide the artwork, material, print method and finishing.</p><Link href="/services" className="inline-link">See all services <ArrowRight size={16} /></Link></div>
           </div>
           <div className="services-grid">
@@ -60,10 +60,7 @@ export default function HomePage() {
 
       <section className="section production-section">
         <div className="site-shell production-grid">
-          <figure className="production-image">
-            <Image src="/visuals/print-production.webp" fill sizes="(max-width: 900px) 100vw, 50vw" alt="Illustrative close-up of a commercial print production line" />
-            <figcaption>Illustrative production visual</figcaption>
-          </figure>
+          <ProductionProof />
           <div className="production-copy">
             <p className="context-label">One practical workflow</p>
             <h2>Clear before the machine runs.</h2>

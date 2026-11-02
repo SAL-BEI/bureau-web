@@ -3,12 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import ClientLogoRail from "@/components/ClientLogoRail";
+import PortfolioGallery from "@/components/PortfolioGallery";
 import QuoteBand from "@/components/QuoteBand";
 import { services, workPreviews } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Print & Branding Capabilities",
-  description: "Explore Bureau Graphics capabilities across branded products, large-format output, business print and document finishing.",
+  title: "Real Print & Branding Work",
+  description: "Explore real Bureau Graphics work across branded products, aviation, large-format output, business print and document finishing.",
   alternates: { canonical: "/work" },
 };
 
@@ -17,22 +18,32 @@ export default function WorkPage() {
     <main id="main-content">
       <section className="page-hero work-hero">
         <div className="site-shell page-hero-grid">
-          <div><p className="context-label">Capability preview</p><h1>From identity to a finished, useful object.</h1></div>
-          <div className="page-hero-aside"><p>These illustrative previews show the type of work we can produce. Ask for relevant physical or recent samples when discussing your project.</p><Link href="/contact#quote" className="inline-link">Ask about your project <ArrowRight size={16} /></Link></div>
+          <div><p className="context-label">Selected real work</p><h1>Made here. Used out there.</h1></div>
+          <div className="page-hero-aside"><p>A selection of real branding, aviation, print and display projects produced by Bureau Graphics.</p><Link href="/contact#quote" className="inline-link">Ask about your project <ArrowRight size={16} /></Link></div>
         </div>
       </section>
 
       <section className="section work-showcase">
         <div className="site-shell work-preview-grid">
           {workPreviews.map((item) => (
-            <article className="work-preview" key={item.title}>
+            <article className="work-preview" key={item.title} data-reveal>
               <Link href={item.href} className="work-preview-image">
-                <Image src={item.image} fill sizes="(max-width: 760px) 100vw, 34vw" alt={`Illustrative ${item.title.toLowerCase()} capability preview`} />
-                <span>Illustrative capability preview</span>
+                <Image src={item.image} fill quality={90} sizes="(max-width: 760px) 100vw, 34vw" alt={item.alt} />
+                <span>Real Bureau Graphics work</span>
               </Link>
               <div><p className="context-label">{item.service}</p><h2>{item.title}</h2><p>{item.description}</p><Link href={item.href} className="inline-link">Explore service <ArrowRight size={16} /></Link></div>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="section portfolio-section">
+        <div className="site-shell">
+          <div className="section-heading heading-split" data-reveal>
+            <div><p className="context-label">Project gallery</p><h2>Explore the work by category.</h2></div>
+            <p>Select a category, then open any project for a closer look. Every image in this gallery comes from completed Bureau Graphics work.</p>
+          </div>
+          <PortfolioGallery />
         </div>
       </section>
 
